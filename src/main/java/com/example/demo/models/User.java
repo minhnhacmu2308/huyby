@@ -3,6 +3,8 @@ package com.example.demo.models;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.sql.Timestamp;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
@@ -16,24 +18,23 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(name = "firstName", nullable = false, length = 30)
+    @Column(name = "FIRSTNAME", nullable = false, length = 30)
     private String firstName;
 
-    @Column(name = "lastName", nullable = false, length = 30)
+    @Column(name = "LASTNAME", nullable = false, length = 30)
     private String lastName;
 
-    @Column(name = "email", nullable = false, length = 250)
+    @Column(name = "EMAIL", nullable = false, length = 250)
     private String email;
 
-    @Column(name = "password", nullable = false, length = 250)
+    @Column(name = "PASSWORD", nullable = false, length = 250)
     private String password;
 
-    @Column(name = "createdAt")
-    private LocalDateTime createdAt;
-
-    @Column(name = "updatedAt")
-    private LocalDateTime updatedAt;
-
+//    @Column(name = "createdAt", columnDefinition = "CURRENT_TIMESTAMP")
+//    private Timestamp createdAt;
+//
+//    @Column(name = "updatedAt", columnDefinition = "CURRENT_TIMESTAMP")
+//    private Timestamp updatedAt;
 
 
 }

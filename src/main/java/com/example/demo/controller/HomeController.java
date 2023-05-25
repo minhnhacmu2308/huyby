@@ -1,6 +1,6 @@
 package com.example.demo.controller;
 
-import com.example.demo.domains.request.SignupResquest;
+import com.example.demo.domains.request.SignupRequest;
 import com.example.demo.domains.response.SignupResponse;
 import com.example.demo.models.User;
 import com.example.demo.repositories.UserRepository;
@@ -22,7 +22,7 @@ public class HomeController {
         return "Hello, World!";
     }
 
-    @GetMapping("/user")
+    @GetMapping("/api/user")
     public String user() {
         return "Hello, User!";
     }
@@ -35,16 +35,19 @@ public class HomeController {
 
 
     @PostMapping("/api/signup")
-    public ResponseEntity<?> signup(@RequestBody SignupResquest signupResquest){
-
-      /*  User user = userService.existByEmail((signupResquest.getEmail()));
-        if(Objects.nonNull(user)){
-            return ResponseEntity.badRequest().body("Email is existed!");
-        }else{
-            SignupResponse signupResponse =  userService.signup(signupResquest);
-            return ResponseEntity.ok(signupResponse);
-        }*/
-        return ResponseEntity.ok(userRepository.findAll());
+    public ResponseEntity<?> signup(@RequestBody SignupRequest SignupRequest){
+        SignupResponse signupResponse =  userService.signup(SignupRequest);
+        return ResponseEntity.ok(signupResponse);
+//        User user = userService.existByEmail((SignupRequest.getEmail()));
+//        if(!Objects.nonNull(user)){
+//            return ResponseEntity.badRequest().body("Email is existed!");
+//        }else{
+//            SignupResponse signupResponse =  userService.signup(SignupRequest);
+//            return ResponseEntity.ok(signupResponse);
+//        }
+//        Boolean isExistEmail = userService.existByEmail((SignupRequest.getEmail()));
+//        System.out.println(isExistEmail);
+//        return ResponseEntity.ok("userRepository.findAll()");
     }
 
     @GetMapping("/admin")
