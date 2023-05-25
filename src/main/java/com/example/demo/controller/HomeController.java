@@ -36,15 +36,13 @@ public class HomeController {
 
     @PostMapping("/api/signup")
     public ResponseEntity<?> signup(@RequestBody SignupRequest SignupRequest){
-        SignupResponse signupResponse =  userService.signup(SignupRequest);
-        return ResponseEntity.ok(signupResponse);
-//        User user = userService.existByEmail((SignupRequest.getEmail()));
-//        if(!Objects.nonNull(user)){
-//            return ResponseEntity.badRequest().body("Email is existed!");
-//        }else{
-//            SignupResponse signupResponse =  userService.signup(SignupRequest);
-//            return ResponseEntity.ok(signupResponse);
-//        }
+        User user = userService.existByEmail((SignupRequest.getEmail()));
+        if(!Objects.nonNull(user)){
+            return ResponseEntity.badRequest().body("Email is existed!");
+        }else{
+            SignupResponse signupResponse =  userService.signup(SignupRequest);
+            return ResponseEntity.ok(signupResponse);
+        }
 //        Boolean isExistEmail = userService.existByEmail((SignupRequest.getEmail()));
 //        System.out.println(isExistEmail);
 //        return ResponseEntity.ok("userRepository.findAll()");
